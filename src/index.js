@@ -45,13 +45,13 @@ async function onSearch(event) {
 
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
 
-    // const normalizedHits = getNormalizedImages(hits);
-    // const imagesMarkup = getImagesMarkup(normalizedHits);
+    const normalizedHits = getNormalizedImages(hits);
+    const imagesMarkup = getImagesMarkup(normalizedHits);
     console.log(hits);
 
-    // refs.gallery.innerHTML = imagesMarkup;
+    refs.gallery.innerHTML = imagesMarkup;
 
-    // apiPixabay.checkLastPage() ? loadMoreBtnHidden() : loadMoreBtnShow();
+    apiPixabay.checkLastPage() ? loadMoreBtnHidden() : loadMoreBtnShow();
   } catch (error) {
     console.log(error);
   }
@@ -79,25 +79,13 @@ function loadMoreBtnShow() {
 }
 
 function getNormalizedImages(array) {
-  return array.map(
-    ({
-      webformatURL,
-      largeImageURL,
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-    }) => ({
-      webformatURL,
-      largeImageURL,
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-    })
-  );
+  return array.map(({ webformatURL, likes, views, comments, downloads }) => ({
+    webformatURL,
+    likes,
+    views,
+    comments,
+    downloads,
+  }));
 }
 
 function getImagesMarkup(array) {
@@ -105,26 +93,24 @@ function getImagesMarkup(array) {
     .map(
       ({
         webformatURL,
-        largeImageURL,
-        tags,
         likes,
         views,
         comments,
         downloads,
       }) => `<div class="photo-card">
-              <img src="" alt="" loading="lazy" />
+              <img src="${webformatURL}" alt="" loading="lazy" />
               <div class="info">
                 <p class="info-item">
-                  <b>Likes${likes}</b>
+                  <b>Likes ${likes}</b>
                 </p>
                 <p class="info-item">
-                  <b>Views${views}</b>
+                  <b>Views ${views}</b>
                 </p>
                 <p class="info-item">
-                  <b>Comments${comments}</b>
+                  <b>Comments ${comments}</b>
                 </p>
                 <p class="info-item">
-                  <b>Downloads${downloads}</b>
+                  <b>Downloads ${downloads}</b>
                 </p>
               </div>
             </div>`

@@ -1,2 +1,56 @@
 @import './common';
 @import './example';
+
+body {
+  background-color: rgb(162, 131, 204);
+}
+
+button {
+  padding: 10px 20px;
+
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2a1ab9;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: rgb(185, 57, 197);
+}
+
+.search-btn {
+  margin-left: 5px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.photo-card {
+  width: 240px;
+  padding: 10px;
+  background-color: aqua;
+  margin: 10px;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.photo-card img {
+  width: 100%;
+}
+
+.info {
+  text-align: center;
+}
+
+.load-more {
+  margin: 10px auto;
+}
